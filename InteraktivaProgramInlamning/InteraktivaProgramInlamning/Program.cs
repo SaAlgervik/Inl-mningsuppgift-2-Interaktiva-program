@@ -11,7 +11,7 @@ namespace InteraktivaProgramInlamning
             // We need this to make sure we can always use periods for decimal points.
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
-            Console.WriteLine("Hello!");
+            Console.WriteLine("Jag gillar glass");
         }
     }
 
