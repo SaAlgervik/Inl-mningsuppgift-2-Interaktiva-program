@@ -14,6 +14,10 @@ namespace InteraktivaProgramInlamning
             Console.WriteLine("Jag alskar glass");
             Console.WriteLine("hadasdasdasdej");
         }
+        public static string hej()
+        {
+           return "Hejsan";
+        }
     }
 
     [TestClass]
