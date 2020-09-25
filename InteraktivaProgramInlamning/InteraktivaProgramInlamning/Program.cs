@@ -12,7 +12,7 @@ namespace InteraktivaProgramInlamning
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
             Console.WriteLine("Jag alskar glass");
-            Console.WriteLine("hej");
+            Console.WriteLine("hadasdasdasdej");
         }
     }
 
