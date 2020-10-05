@@ -38,6 +38,9 @@ namespace InteraktivaProgramInlamning
                 case 0:
                    expenses.Add(AddExpense());
                     break;
+                case 1:
+                    ShowExpenses("This is the total cost :",  expenses);
+                    break;
                 default:
                     break;
             }
@@ -45,10 +48,19 @@ namespace InteraktivaProgramInlamning
 
 
         }
+        public static void ShowExpenses(string promt, List<Expense> expenses)
+        {
+            Console.WriteLine(promt);
 
+            foreach (var e in expenses)
+            {
+                Console.WriteLine($"{e.Category}: {e.Cost} kr ({e.Category})");
+
+            }
+
+        }
         public static Expense AddExpense()
         {
-            List<Expense> expenses = new List<Expense>();
 
             Expense e = new Expense();
             Console.Write("Name :");
