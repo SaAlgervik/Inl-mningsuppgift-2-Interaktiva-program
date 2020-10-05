@@ -20,33 +20,37 @@ namespace InteraktivaProgramInlamning
         {
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             List<Expense> expenses = new List<Expense>();
-
-            ShowMenu("What do you want to do?", new[]
+            while (true)
             {
+
+
+                int select = ShowMenu("What do you want to do?", new[]
+                 {
                 "Add Expense",
                 "Show All Expense",
                 "Show Sum By Category",
                 "Remove Expense",
                 "Remove All Expenses",
                 "Exit"
-            });
-            Console.Clear();
+                });
 
-            int select = 0;
-            switch (select)
-            {
-                case 0:
-                   expenses.Add(AddExpense());
-                    break;
-                case 1:
-                    ShowExpenses("This is the total cost :",  expenses);
-                    break;
-                default:
-                    break;
+                switch (select)
+                {
+                    case 0:
+                        expenses.Add(AddExpense());
+                        Console.Clear();
+                        Console.WriteLine("Expense added!");
+                        break;
+                    case 1:
+                        ShowExpenses("This is the total cost :", expenses);
+                        break;
+                    default:
+                        break;
+                }
+
+
+
             }
-
-
-
         }
         public static void ShowExpenses(string promt, List<Expense> expenses)
         {
@@ -93,7 +97,7 @@ namespace InteraktivaProgramInlamning
             e.Category = category;
 
             return e;
-        
+
 
         }
 
