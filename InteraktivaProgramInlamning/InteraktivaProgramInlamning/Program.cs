@@ -22,8 +22,7 @@ namespace InteraktivaProgramInlamning
             List<Expense> expenses = new List<Expense>();
             while (true)
             {
-
-
+                Console.WriteLine("");
                 int select = ShowMenu("What do you want to do?", new[]
                  {
                    "Add Expense",
@@ -42,10 +41,16 @@ namespace InteraktivaProgramInlamning
                         Console.WriteLine("Expense added!");
                         break;
                     case 1:
-                        ShowExpenses("This is the total cost :", expenses);
+                        ShowExpenses("This is all your expenses :", expenses);
                         break;
                     case 2:
-
+                        Console.WriteLine();
+                        break;
+                    case 3:
+                        expenses.RemoveAt(RemoveIndex(expenses));
+                        Console.Clear();
+                        Console.WriteLine("Expense removed!");
+                        break;
                     default:
                         break;
                 }
@@ -64,6 +69,22 @@ namespace InteraktivaProgramInlamning
 
             }
 
+        }
+
+        public static int RemoveIndex(List<Expense> expenses)
+        {
+            List<string> items = new List<string>();
+
+            foreach (var e in expenses)
+            {
+                items.Add($"{e.Category}: {e.Cost} kr ({e.Category})");
+
+            }
+
+            int Selected = ShowMenu("What would you like to remove?", items.ToArray());
+
+
+            return Selected;
         }
         public static Expense AddExpense()
         {
