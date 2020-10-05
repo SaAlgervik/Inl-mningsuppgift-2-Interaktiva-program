@@ -26,14 +26,14 @@ namespace InteraktivaProgramInlamning
 
                 int select = ShowMenu("What do you want to do?", new[]
                  {
-                "Add Expense",
-                "Show All Expense",
-                "Show Sum By Category",
-                "Remove Expense",
-                "Remove All Expenses",
-                "Exit"
+                   "Add Expense",
+                   "Show All Expense",
+                   "Show Sum By Category",
+                   "Remove Expense",
+                   "Remove All Expenses",
+                   "Exit"
                 });
-
+                Console.Clear();
                 switch (select)
                 {
                     case 0:
@@ -44,6 +44,8 @@ namespace InteraktivaProgramInlamning
                     case 1:
                         ShowExpenses("This is the total cost :", expenses);
                         break;
+                    case 2:
+
                     default:
                         break;
                 }
