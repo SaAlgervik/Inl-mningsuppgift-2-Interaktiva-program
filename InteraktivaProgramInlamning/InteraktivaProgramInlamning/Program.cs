@@ -56,6 +56,10 @@ namespace InteraktivaProgramInlamning
                     case 4:
                         RemoveAll(expenses);
                         break;
+                    case 5:
+                        Console.WriteLine("Goodbye!!");
+                        Environment.Exit(3000);
+                        break;
                     default:
                         break;
                 }
