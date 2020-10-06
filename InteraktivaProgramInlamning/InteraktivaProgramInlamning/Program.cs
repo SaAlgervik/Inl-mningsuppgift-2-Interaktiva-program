@@ -19,7 +19,7 @@ namespace InteraktivaProgramInlamning
         public static void Main()
         {
 
-
+           
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             List<Expense> expenses = new List<Expense>();
             while (true)
@@ -54,7 +54,11 @@ namespace InteraktivaProgramInlamning
                         Console.WriteLine("Expense removed!");
                         break;
                     case 4:
-                        RemoveAll(expenses);
+                         RemoveAll(expenses);
+                        break;
+                    case 5:
+                        Console.WriteLine("Goodbye!!");
+                        Environment.Exit(3000);
                         break;
                     default:
                         break;
@@ -65,7 +69,6 @@ namespace InteraktivaProgramInlamning
 
         public static void RemoveAll(List<Expense> expenses)
         {
-
             int select = ShowMenu("Are you sure?", new[]
             {
                 "Yes",
