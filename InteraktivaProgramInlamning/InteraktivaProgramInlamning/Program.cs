@@ -18,6 +18,8 @@ namespace InteraktivaProgramInlamning
     {
         public static void Main()
         {
+
+
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             List<Expense> expenses = new List<Expense>();
             while (true)
@@ -51,14 +53,37 @@ namespace InteraktivaProgramInlamning
                         Console.Clear();
                         Console.WriteLine("Expense removed!");
                         break;
+                    case 4:
+                        RemoveAll(expenses);
+                        break;
                     default:
                         break;
                 }
 
-
-
             }
         }
+
+        public static void RemoveAll(List<Expense> expenses)
+        {
+
+            int select = ShowMenu("Are you sure?", new[]
+            {
+                "Yes",
+                "No"
+            });
+            if (select == 0)
+            {
+                expenses.Clear();
+                Console.WriteLine("All expenses have been removed!");
+            }
+            else
+            {
+                Console.WriteLine("Nothing have been removed!");
+            }
+
+        }
+
+        // Skriver ut alla object av klassen expenses
         public static void ShowExpenses(string promt, List<Expense> expenses)
         {
             Console.WriteLine(promt);
@@ -66,26 +91,23 @@ namespace InteraktivaProgramInlamning
             foreach (var e in expenses)
             {
                 Console.WriteLine($"{e.Category}: {e.Cost} kr ({e.Category})");
-
             }
-
         }
 
+        // Skriver ut värde samt returnerar ett index som användaren vill ta bort fron listan av objekt
         public static int RemoveIndex(List<Expense> expenses)
         {
             List<string> items = new List<string>();
-
             foreach (var e in expenses)
             {
                 items.Add($"{e.Category}: {e.Cost} kr ({e.Category})");
-
             }
 
+
             int Selected = ShowMenu("What would you like to remove?", items.ToArray());
-
-
             return Selected;
         }
+        // Skapa nya objekt av klassen Expenses
         public static Expense AddExpense()
         {
 
@@ -116,12 +138,9 @@ namespace InteraktivaProgramInlamning
                     category += "Other";
                     break;
             }
-
             e.Category = category;
 
             return e;
-
-
         }
 
         public static int ShowMenu(string prompt, string[] options)
