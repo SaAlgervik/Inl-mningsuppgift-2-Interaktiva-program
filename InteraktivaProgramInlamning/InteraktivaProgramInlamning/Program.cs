@@ -115,7 +115,7 @@ namespace InteraktivaProgramInlamning
             }
         }
 
-        // Skriver ut värde samt returnerar ett index som användaren vill ta bort fron listan av objekt
+        // Skriver ut värde samt returnerar ett index som användaren vill ta bort från listan av objekt
         public static int RemoveIndex(List<Expense> expenses)
         {
             List<string> items = new List<string>();
