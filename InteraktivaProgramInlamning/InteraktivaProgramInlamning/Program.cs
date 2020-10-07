@@ -20,7 +20,6 @@ namespace InteraktivaProgramInlamning
         public static void Main()
         {
             Console.WriteLine("Welcome!");
-            decimal x = 0;
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             List<Expense> expenses = new List<Expense>();
             while (true)
