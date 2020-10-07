@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace InteraktivaProgramInlamning
 {
+    
     public class Expense
     {
         public string Category;
@@ -18,13 +19,13 @@ namespace InteraktivaProgramInlamning
     {
         public static void Main()
         {
-
-           
+            Console.WriteLine("Welcome!");
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             List<Expense> expenses = new List<Expense>();
             while (true)
             {
                 Console.WriteLine("");
+                // Meny som låter användaren välja vad man vill göra 
                 int select = ShowMenu("What do you want to do?", new[]
                  {
                    "Add Expense",
@@ -46,7 +47,9 @@ namespace InteraktivaProgramInlamning
                         ShowExpenses("This is all your expenses :", expenses);
                         break;
                     case 2:
-                        Console.WriteLine();
+                        Console.WriteLine($"Food:  { SumCategory(expenses, "Food")}");
+                        Console.WriteLine($"Entertainment:  { SumCategory(expenses, "Entertainment")}");
+                        Console.WriteLine($"Other:  {SumCategory(expenses, "Other")}");
                         break;
                     case 3:
                         expenses.RemoveAt(RemoveIndex(expenses));
@@ -54,7 +57,7 @@ namespace InteraktivaProgramInlamning
                         Console.WriteLine("Expense removed!");
                         break;
                     case 4:
-                         RemoveAll(expenses);
+                        RemoveAll(expenses);
                         break;
                     case 5:
                         Console.WriteLine("Goodbye!!");
@@ -67,6 +70,21 @@ namespace InteraktivaProgramInlamning
             }
         }
 
+        // Summerar Cost från klasses Expense och returnerar det i en decimal
+        public static decimal SumCategory(List<Expense> expenses, string category = null)
+        {
+            decimal returnvalue = 0;
+
+            foreach (var e in expenses)
+            {
+                if (e.Category == category)
+                {
+                    returnvalue += e.Cost;
+                }
+            }
+            return returnvalue;
+        }
+        // Kollar om användaren vill ta bort alla objekt ur listan med Expenses, om ja, tar bort, om nej, gör inget
         public static void RemoveAll(List<Expense> expenses)
         {
             int select = ShowMenu("Are you sure?", new[]
@@ -86,7 +104,7 @@ namespace InteraktivaProgramInlamning
 
         }
 
-        // Skriver ut alla object av klassen expenses
+        // Skriver ut alla object av klassen Expense
         public static void ShowExpenses(string promt, List<Expense> expenses)
         {
             Console.WriteLine(promt);
@@ -145,7 +163,7 @@ namespace InteraktivaProgramInlamning
 
             return e;
         }
-
+        
         public static int ShowMenu(string prompt, string[] options)
         {
             if (options == null || options.Length == 0)
@@ -205,9 +223,38 @@ namespace InteraktivaProgramInlamning
     public class ProgramTests
     {
         [TestMethod]
-        public void ExampleTest()
+        public void SumCategory_OnlyFood()
         {
+            List<Expense> e = new List<Expense>();
+            e.Add(new Expense { Category = "Food", Name = "Äpple", Cost = 15 });
+            e.Add(new Expense { Category = "Food", Name = "Päron", Cost = 12 });
 
+            decimal x = Program.SumCategory(e, "Food");
+
+            Assert.AreEqual(x, 27);
+        }
+
+        [TestMethod]
+        public void SumCategory_MoreThenOneCategory()
+        {
+            List<Expense> e = new List<Expense>();
+            e.Add(new Expense { Category = "Food", Name = "Äpple" ,Cost = 3 });
+            e.Add(new Expense { Category = "Entertainment", Name = "PS4", Cost = 4990 });
+            e.Add(new Expense { Category = "Other", Name = "Blanket", Cost = 40 });
+
+            decimal x = Program.SumCategory(e, "Other");
+
+            Assert.AreEqual(x, 40);
+        }
+        [TestMethod]
+        public void SumCategory_EmptyList()
+        {
+            List<Expense> e = new List<Expense>();
+        
+
+            decimal x = Program.SumCategory(e, "Other");
+
+            Assert.AreEqual(x, 0);
         }
     }
 }
