@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace InteraktivaProgramInlamning
 {
-    
+
     public class Expense
     {
         public string Category;
@@ -47,9 +47,30 @@ namespace InteraktivaProgramInlamning
                         ShowExpenses("This is all your expenses :", expenses);
                         break;
                     case 2:
-                        Console.WriteLine($"Food:  { SumCategory(expenses, "Food")}");
-                        Console.WriteLine($"Entertainment:  { SumCategory(expenses, "Entertainment")}");
-                        Console.WriteLine($"Other:  {SumCategory(expenses, "Other")}");
+                        int option = ShowMenu("Witch category would you like to sum ?", new[]
+                         {
+                           "Food",
+                           "Entertainment",
+                           "Other",
+                           "All"
+                         });
+                        if (option == 0)
+                        {
+                            Console.WriteLine($"Food:  { SumCategory(expenses, "Food")}kr");
+                        }
+                        else if (option == 1)
+                        {
+                            Console.WriteLine($"Entertainment:  { SumCategory(expenses, "Entertainment")}kr");
+                        }
+                        else if (option == 2)
+                        {
+                            Console.WriteLine($"Other:  {SumCategory(expenses, "Other")}kr");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"All expenses : {SumCategory(expenses)}kr");
+                        }
+
                         break;
                     case 3:
                         expenses.RemoveAt(RemoveIndex(expenses));
@@ -73,11 +94,12 @@ namespace InteraktivaProgramInlamning
         // Summerar Cost från klasses Expense och returnerar det i en decimal
         public static decimal SumCategory(List<Expense> expenses, string category = null)
         {
+
             decimal returnvalue = 0;
 
             foreach (var e in expenses)
             {
-                if (e.Category == category)
+                if (e.Category == category || category == null)
                 {
                     returnvalue += e.Cost;
                 }
@@ -163,7 +185,7 @@ namespace InteraktivaProgramInlamning
 
             return e;
         }
-        
+
         public static int ShowMenu(string prompt, string[] options)
         {
             if (options == null || options.Length == 0)
@@ -238,7 +260,7 @@ namespace InteraktivaProgramInlamning
         public void SumCategory_MoreThenOneCategory()
         {
             List<Expense> e = new List<Expense>();
-            e.Add(new Expense { Category = "Food", Name = "Äpple" ,Cost = 3 });
+            e.Add(new Expense { Category = "Food", Name = "Äpple", Cost = 3 });
             e.Add(new Expense { Category = "Entertainment", Name = "PS4", Cost = 4990 });
             e.Add(new Expense { Category = "Other", Name = "Blanket", Cost = 40 });
 
@@ -250,7 +272,7 @@ namespace InteraktivaProgramInlamning
         public void SumCategory_EmptyList()
         {
             List<Expense> e = new List<Expense>();
-        
+
 
             decimal x = Program.SumCategory(e, "Other");
 
